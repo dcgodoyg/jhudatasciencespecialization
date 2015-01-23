@@ -1,13 +1,19 @@
+#check readme in order to download the data set
+
+#once data set has been downloaded and unzipped
+#set working directory
 setwd("exdata-data-NEI_data")
+#load data used in this script
 NEI <- readRDS("summarySCC_PM25.rds")
 SCC <- readRDS("Source_Classification_Code.rds")
 
-#Across the United States, how have emissions from coal combustion-related
-#sources changed from 1999–2008?
+#Compare emissions from motor vehicle sources in Baltimore City
+#with emissions from motor vehicle sources in Los Angeles County
 
 #drop columns not required for this plot
 NEIdropped <- NEI[, -c(3, 5)]
 
+#find vehicles related data
 motorvehicles <- grepl("vehicle", SCC$SCC.Level.Two, ignore.case=TRUE)
 motorvehiclesSCC <- SCC[motorvehicles, ]$SCC
 motorvehiclesNEI <- NEIdropped[NEIdropped$SCC %in% motorvehiclesSCC, ]
@@ -28,8 +34,7 @@ head(finalbaseNEI)
 png(filename = "plot6.png", width = 480, height = 480, units = "px",
     bg = "white")
 
-#create barplot using ggplot and divide type by facets (panels)
-
+#create barplot using ggplot and use facets (panels)
 ggplot(finalbaseNEI, aes(factor(year), Emissions)) +
         geom_bar(stat="identity") +
         facet_grid(. ~ city) +
