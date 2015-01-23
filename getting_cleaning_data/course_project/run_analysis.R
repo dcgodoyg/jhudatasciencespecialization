@@ -69,7 +69,7 @@ colnames(merged_data) <- c("subject", "actv", features[finalselection])
 head(merged_data)
 
 #export data
-write.csv(merged_data, "merged_data.csv")
+write.table(merged_data, "merged_data.txt")
 
 #STEP5:From the data set in step 4, creates a second, independent tidy data set with the #average of each variable for each activity and each subject.
 
@@ -81,7 +81,7 @@ tidy_data <-aggregate(. ~subject + actv, merged_data, mean)
 head(tidy_data)
 
 #export data
-write.csv(tidy_data, "tidy_data.csv")
+write.table(tidy_data, "tidy_data.txt")
 
 #END
 
