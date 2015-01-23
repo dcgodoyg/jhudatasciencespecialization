@@ -1,6 +1,8 @@
-#check readme in order to find the link to download the data set
-
-#once data set has been downloaded and unzipped
+#download .zip file in working directory
+download.file("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip", 
+              temp)
+#unzip file and create folder in working directory
+unzip("exdata-data-NEI_data.zip", exdir="exdata-data-NEI_data")
 #set working directory
 setwd("exdata-data-NEI_data")
 #load data used in this script

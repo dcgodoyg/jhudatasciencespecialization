@@ -20,7 +20,7 @@ Yes, total emissions from PM2.5 in the United States from 1999 to 2008 have decr
 
 #####Question 2: 
 
-Have total emissions from PM2.5 decreased in the Baltimore City, Maryland from 1999 to 2008?
+Have total emissions PM2.5 decreased in Baltimore City, Maryland from 1999 to 2008?
 
 ![plot2](plot2.png) 
 
