@@ -15,7 +15,7 @@ NEIdropped1 <- NEI[, -c(1, 2, 3, 5)]
 sum_emissions <- aggregate(. ~ year, NEIdropped1, sum)
 
 #prepares file where plot will be saved
-png(filename = "plot1.png", width = 480, height = 480, units = "px",
+png(filename = "plot1.png", width = 560, height = 480, units = "px",
     bg = "white")
 
 #create barplot. Divide emissions by 1000 and get kilotons.

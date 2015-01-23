@@ -23,10 +23,11 @@ motorvehiclesNEI <- NEIdropped[NEIdropped$SCC %in% motorvehiclesSCC, ]
 motorbaltimoreNEI <- subset(motorvehiclesNEI, fips == "24510")
 
 #prepares file where plot will be saved
-png(filename = "plot5.png", width = 480, height = 480, units = "px",
+png(filename = "plot5.png", width = 560, height = 480, units = "px",
     bg = "white")
 
 #create barplot using ggplot and divide type by facets (panels)
+library(ggplot2)
 ggplot(motorbaltimoreNEI, aes(factor(year), Emissions)) +
         geom_bar(stat="identity") +
         xlab("year") + 

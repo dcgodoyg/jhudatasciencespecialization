@@ -23,10 +23,11 @@ combustionSCC <- SCC[coal_combustion, ]$SCC
 combustionNEI <- NEIdropped[NEIdropped$SCC %in% combustionSCC, ]
 
 #prepares file where plot will be saved
-png(filename = "plot4.png", width = 480, height = 480, units = "px",
+png(filename = "plot4.png", width = 560, height = 480, units = "px",
     bg = "white")
 
 #create barplot using ggplot
+library(ggplot2)
 ggplot(combustionNEI, aes(x=factor(year), y=Emissions/1000)) +
         geom_bar(stat="identity") +
         xlab("year") +

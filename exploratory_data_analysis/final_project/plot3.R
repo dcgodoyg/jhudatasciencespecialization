@@ -20,7 +20,7 @@ NEIdropped <- NEIBaltimore[, -c(1, 2, 3)]
 sum_emissions <- aggregate(. ~ year + type, NEIdropped, sum)
 
 #prepares file where plot will be saved
-png(filename = "plot3.png", width = 480, height = 480, units = "px",
+png(filename = "plot3.png", width = 560, height = 480, units = "px",
     bg = "white")
 
 #create barplot using ggplot and use facets (panels) by type
