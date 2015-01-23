@@ -68,6 +68,8 @@ As a result, the following 86 measurements were taken into account:
         [83] "angletBodyGyroJerkMeangravityMean" "angleXgravityMean"                
         [85] "angleYgravityMean"                 "angleZgravityMean"    
         
+Take into account that measurements are normalised and so unitlless.
+
 3) activities were described (and converted to lowecase) in the merged data set according to the descriptions found in activity_labels.txt. 
 
 The data frame looks like:
