@@ -6,10 +6,9 @@ setwd("exdata-data-NEI_data")
 #load data used in this script
 NEI <- readRDS("summarySCC_PM25.rds")
 
-#Have total emissions from PM2.5 decreased in the United States
-#from 1999 to 2008? Using the base plotting system, make a plot
-#showing the total PM2.5 emission from all sources for each of
-#the years 1999, 2002, 2005, and 2008.
+#Of the four types of sources indicated by the type variable,
+#which of these four sources have seen decreases in emissions
+#from 1999–2008 for Baltimore City?
 
 #subset Baltimore data
 NEIBaltimore <- subset(NEI, fips == "24510")

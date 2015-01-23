@@ -1,3 +1,7 @@
+#check readme in order to download the data set
+
+#once data set has been downloaded and unzipped
+#set working directory
 setwd("exdata-data-NEI_data")
 NEI <- readRDS("summarySCC_PM25.rds")
 

@@ -28,14 +28,13 @@ motorlaNEI <- cbind(motorlaNEI, city = "Los Angeles")
 
 #create one database binding rows
 finalbaseNEI <- rbind(motorbaltimoreNEI, motorlaNEI)
-head(finalbaseNEI)
 
 #prepares file where plot will be saved
 png(filename = "plot6.png", width = 480, height = 480, units = "px",
     bg = "white")
 
 #create barplot using ggplot and use facets (panels)
-ggplot(finalbaseNEI, aes(factor(year), Emissions)) +
+plot6 <- ggplot(finalbaseNEI, aes(factor(year), Emissions)) +
         geom_bar(stat="identity") +
         facet_grid(. ~ city) +
         xlab("year") + 

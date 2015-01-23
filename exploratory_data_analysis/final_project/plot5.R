@@ -7,8 +7,8 @@ setwd("exdata-data-NEI_data")
 NEI <- readRDS("summarySCC_PM25.rds")
 SCC <- readRDS("Source_Classification_Code.rds")
 
-#Across the United States, how have emissions from coal
-#combustion-related sources changed from 1999–2008?
+#How have emissions from motor vehicle sources changed
+#from 1999–2008 in Baltimore City?
 
 #drop columns not required for this plot
 NEIdropped <- NEI[, -c(3, 5)]
