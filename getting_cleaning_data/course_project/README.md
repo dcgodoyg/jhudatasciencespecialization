@@ -4,16 +4,19 @@ Getting and Cleaning Data - Johns Hopkins Bloomberg School of Public Health at C
 
 The run_analysis.R script was created as a Final Course Project.
 
-In order to run directly the run_analysis.R script, you should follow the following steps:
+In order to run directly the run_analysis.R script, you should follow these steps:
         
-        1. Download and unzip the .zip file in
+        1. Download and unzip the .zip file that you will find here:
         https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
-        in a folder named "UCI HAR Dataset"
+        in a folder named "UCI HAR Dataset" in your computer. 
+        
         2. Download the run_analysis.R script in the "UCI HAR Dataset"
         folder
+        
         3. Make this folder as your working directory using R terminal
                 setwd("c:filepath/UCI HAR Dataset")
-        3. Source the script using R Terminal.
+                
+        4. Source the script using R Terminal.
                 source("run_analysis.R")
 
 Once sourced the script, the following happens:
