@@ -1,8 +1,6 @@
 ---
 title: "Course Project 2 - Exploratory Data Analysis"
 author: "DanielGodoy"
-date: "Friday, January 23, 2015"
-output: html_document
 ---
 
 This document explains step by step the answers obtained using plot1.R, plot2.R, plot3.R, plot4.R, plot4.R, plot6.R. These files can be obtained here: https://github.com/dcgodoyg/jhudatasciencespecialization/tree/master/exploratory_data_analysis/project1
