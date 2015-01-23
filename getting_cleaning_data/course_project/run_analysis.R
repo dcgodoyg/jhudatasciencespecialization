@@ -84,5 +84,4 @@ head(tidy_data)
 write.csv(tidy_data, "tidy_data.csv")
 
 #END
-#measurements are normalised and so unitlless.
 
