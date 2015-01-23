@@ -1,4 +1,4 @@
-#check readme in order to download the data set
+#check readme in order to find the link to download the data set
 
 #once data set has been downloaded and unzipped
 #set working directory
