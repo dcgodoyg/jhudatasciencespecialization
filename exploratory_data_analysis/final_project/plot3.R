@@ -24,6 +24,7 @@ png(filename = "plot3.png", width = 560, height = 480, units = "px",
     bg = "white")
 
 #create barplot using ggplot and use facets (panels) by type
+library(ggplot2)
 ggplot(sum_emissions, aes(x=factor(year), y=Emissions)) +
         geom_bar(stat="identity") +
         facet_grid(. ~ type) +
