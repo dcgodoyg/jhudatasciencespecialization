@@ -1,0 +1,123 @@
+---
+title: "Assessment 1"
+author: "Daniel Godoy"
+---
+
+unzip file
+
+```{r, echo=TRUE, cache=TRUE}
+unzip("activity.zip", exdir="activitymonitoringdata")
+activity.base <- read.csv("activitymonitoringdata/activity.csv")
+head(activity.base, 10)
+```
+
+##### 1) What is mean total number of steps taken per day?
+
+For this part of the assignment, you can ignore the missing values in the dataset.
+
+Calculate the total number of steps taken per day
+
+```{r, echo=TRUE, cache=TRUE}
+total.steps.day <- aggregate(. ~ date, activity.base, FUN = sum, na.rm=TRUE)
+head(total.steps.day)
+```
+
+###### Make a histogram of the total number of steps taken each day
+
+```{r, echo=TRUE}
+hist(total.steps.day$steps, breaks="FD", xlab="Steps", 
+     main = "Histogram of the total number of steps")
+```
+
+##### Calculate and report the mean and median of the total number of steps taken per day
+
+In this case the mean is represented in the graph by a red line and the median
+is represented in the graph by a dashed blue line.
+
+```{r, echo=TRUE, cache=TRUE, warning=FALSE}
+mean.steps.day <- mean(total.steps.day$steps)
+median.steps.day <- median(total.steps.day$steps)
+#Print mean
+mean.steps.day
+#Print median
+median.steps.day
+hist(total.steps.day$steps, breaks="FD", xlab="Steps", 
+     main = "Histogram of the total number of steps", abline = 1000)
+abline(v=mean.steps.day, col="red")
+abline(v=median.steps.day, col="blue", lty="dashed")
+```
+
+##### What is the average daily activity pattern?
+
+###### Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
+
+```{r, echo=TRUE, cache=TRUE}
+average.steps.interval <- aggregate(. ~ interval, activity.base[ , -2], FUN = mean, na.rm=TRUE)
+head(average.steps.interval)
+plot(average.steps.interval$steps, type="l", xlab="5-minute interval",
+                                        ylab = "steps")
+which.max(average.steps.interval$steps)
+```
+
+###### Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+```{r, echo=TRUE, cache=TRUE}
+which.max(average.steps.interval$steps)
+```
+
+##### Imputing missing values
+
+###### Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
+
+```{r, echo=TRUE}
+sum(is.na(activity.base))
+```
+
+###### Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. Create a new dataset that is equal to the original dataset but with the missing data filled in.
+
+
+We will populate NA's with mean for each interval.
+
+```{r}
+activity.base.na <- activity.base[is.na(activity.base), ]
+#merge columns
+activity.base.merged <- merge(average.steps.interval, activity.base.na,
+                                        by = "interval")[ , -3]
+#reorganize columns
+activity.base.merged <- activity.base.merged[ , c(2, 3, 1)]
+colnames(activity.base.merged) <- c("steps", "date", "interval")
+activity.base.completes <- activity.base[complete.cases(activity.base), ]
+#create coplete database without NA's
+activity.base.no.na <- rbind(activity.base.merged, activity.base.completes)
+```
+
+###### Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
+
+```{r, echo=TRUE, cache=TRUE}
+total.steps.day2 <- aggregate(. ~ date, activity.base.no.na, FUN = sum, na.rm=TRUE)
+head(total.steps.day2)
+```
+
+```{r, echo=TRUE}
+hist(total.steps.day$steps, breaks="FD", xlab="Steps", 
+     main = "Histogram of the total number of steps (NA's filled)")
+```
+
+```{r, echo=TRUE, cache=TRUE, warning=FALSE}
+mean.steps.day2 <- mean(total.steps.day2$steps)
+median.steps.day2 <- median(total.steps.day2$steps)
+#Print mean
+mean.steps.day2
+#Print median
+median.steps.day2
+hist(total.steps.day2$steps, breaks="FD", xlab="Steps", 
+     main = "Histogram of the total number of steps (NA's filled)")
+abline(v=mean.steps.day2, col="red")
+abline(v=median.steps.day2, col="blue", lty="dashed")
+```
+
+
+
+
+
+
+
