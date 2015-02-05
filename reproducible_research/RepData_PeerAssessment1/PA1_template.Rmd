@@ -21,14 +21,14 @@ Calculate the total number of steps taken per day
 
 ```{r, echo=TRUE}
 total.steps.day <- aggregate(. ~ date, activity.base, FUN = sum,
-                             na.rm=TRUE)[ , -3]
+                             na.rm = TRUE)[ , -3]
 head(total.steps.day)
 ```
 
 ###### Make a histogram of the total number of steps taken each day
 
 ```{r, echo=TRUE}
-hist(total.steps.day$steps, breaks="FD", xlab="Steps", 
+hist(total.steps.day$steps, breaks = "FD", xlab = "Steps", 
      main = "Histogram of the total number of steps")
 ```
 
@@ -50,20 +50,21 @@ median.steps.day
 ```
 The histogram is (mean-red line, median-blue line):
 ```{r, echo=TRUE, warning=FALSE}
-hist(total.steps.day$steps, breaks="FD", xlab="Steps", 
+hist(total.steps.day$steps, breaks = "FD", xlab = "Steps", 
      main = "Histogram of the total number of steps", abline = 1000)
-abline(v=mean.steps.day, col="red")
-abline(v=median.steps.day, col="blue", lty="dashed")
+abline(v = mean.steps.day, col = "red")
+abline(v = median.steps.day, col = "blue", lty = "dashed")
 ```
 
-##### What is the average daily activity pattern?
+##### 2) What is the average daily activity pattern?
 
 ###### Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
 ```{r, echo=TRUE, warning=FALSE}
-average.steps.interval <- aggregate(. ~ interval, activity.base[ , -2], FUN = mean, na.rm=TRUE)
+average.steps.interval <- aggregate(. ~ interval, activity.base[ , -2],
+                                    FUN = mean, na.rm = TRUE)
 head(average.steps.interval)
-plot(average.steps.interval$steps, type="l", xlab="5-minute interval",
+plot(average.steps.interval$steps, type = "l", xlab = "5-minute interval",
                                         ylab = "steps")
 ```
 
@@ -74,7 +75,7 @@ which.max(average.steps.interval$steps)
   
   
   
-##### Imputing missing values
+##### 3) Imputing missing values
 
 ###### Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
 
@@ -108,12 +109,12 @@ head(activity.base.no.na)
 
 ```{r, echo=TRUE}
 total.steps.day2 <- aggregate(. ~ date, activity.base.no.na, FUN = sum,
-                              na.rm=TRUE)[ , -3]
+                              na.rm = TRUE)[ , -3]
 head(total.steps.day2)
 ```
 
 ```{r, echo=TRUE, warning=FALSE}
-hist(total.steps.day2$steps, breaks="FD", xlab="Steps", 
+hist(total.steps.day2$steps, breaks = "FD", xlab = "Steps", 
      main = "Histogram of the total number of steps (NA's filled)")
 ```
   
@@ -134,13 +135,13 @@ median.steps.day2
 There is almost no difference between the data base containing NA's and the data base where NA's where replaced by the mean value for each interval. The impact of imputing only caused a higuer number of frequency counts. The histogram shpae, median and mean are almost the same.  
 
 ```{r, echo=TRUE, warning=FALSE}
-hist(total.steps.day2$steps, breaks="FD", xlab="Steps", 
+hist(total.steps.day2$steps, breaks = "FD", xlab = "Steps", 
      main = "Histogram of the total number of steps", abline = 1000)
-abline(v=mean.steps.day2, col="red")
-abline(v=median.steps.day2, col="blue", lty="dashed")
+abline(v=mean.steps.day2, col = "red")
+abline(v=median.steps.day2, col = "blue", lty = "dashed")
 ```
 
-##### Are there differences in activity patterns between weekdays and weekends?
+##### 4) Are there differences in activity patterns between weekdays and weekends?
 
 Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
 
@@ -171,8 +172,8 @@ head(acti.base.no.na.fact.agg, 10)
   
 The graph looks like:
 ```{r}
-ggplot(acti.base.no.na.fact.agg, aes(x=interval, y=steps)) + geom_line() +
-                facet_wrap(~ type, ncol=1) + ylab("Mean steps")
+ggplot(acti.base.no.na.fact.agg, aes(x = interval, y = steps)) + geom_line() +
+                facet_wrap(~ type, ncol = 1) + ylab("Mean steps")
 ```
 
 Yes, there is a difference in activity patterns between weekdays and weekends. The mean for the early morning intervals seems to be higher in weekdays. The mean for the afternoon intervals seems to be higher in weekends. 

@@ -37,7 +37,7 @@ Calculate the total number of steps taken per day
 
 ```r
 total.steps.day <- aggregate(. ~ date, activity.base, FUN = sum,
-                             na.rm=TRUE)[ , -3]
+                             na.rm = TRUE)[ , -3]
 head(total.steps.day)
 ```
 
@@ -55,7 +55,7 @@ head(total.steps.day)
 
 
 ```r
-hist(total.steps.day$steps, breaks="FD", xlab="Steps", 
+hist(total.steps.day$steps, breaks = "FD", xlab = "Steps", 
      main = "Histogram of the total number of steps")
 ```
 
@@ -90,21 +90,22 @@ median.steps.day
 The histogram is (mean-red line, median-blue line):
 
 ```r
-hist(total.steps.day$steps, breaks="FD", xlab="Steps", 
+hist(total.steps.day$steps, breaks = "FD", xlab = "Steps", 
      main = "Histogram of the total number of steps", abline = 1000)
-abline(v=mean.steps.day, col="red")
-abline(v=median.steps.day, col="blue", lty="dashed")
+abline(v = mean.steps.day, col = "red")
+abline(v = median.steps.day, col = "blue", lty = "dashed")
 ```
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
 
-##### What is the average daily activity pattern?
+##### 2) What is the average daily activity pattern?
 
 ###### Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
 
 ```r
-average.steps.interval <- aggregate(. ~ interval, activity.base[ , -2], FUN = mean, na.rm=TRUE)
+average.steps.interval <- aggregate(. ~ interval, activity.base[ , -2],
+                                    FUN = mean, na.rm = TRUE)
 head(average.steps.interval)
 ```
 
@@ -119,7 +120,7 @@ head(average.steps.interval)
 ```
 
 ```r
-plot(average.steps.interval$steps, type="l", xlab="5-minute interval",
+plot(average.steps.interval$steps, type = "l", xlab = "5-minute interval",
                                         ylab = "steps")
 ```
 
@@ -137,7 +138,7 @@ which.max(average.steps.interval$steps)
   
   
   
-##### Imputing missing values
+##### 3) Imputing missing values
 
 ###### Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
 
@@ -188,7 +189,7 @@ head(activity.base.no.na)
 
 ```r
 total.steps.day2 <- aggregate(. ~ date, activity.base.no.na, FUN = sum,
-                              na.rm=TRUE)[ , -3]
+                              na.rm = TRUE)[ , -3]
 head(total.steps.day2)
 ```
 
@@ -204,7 +205,7 @@ head(total.steps.day2)
 
 
 ```r
-hist(total.steps.day2$steps, breaks="FD", xlab="Steps", 
+hist(total.steps.day2$steps, breaks = "FD", xlab = "Steps", 
      main = "Histogram of the total number of steps (NA's filled)")
 ```
 
@@ -238,15 +239,15 @@ There is almost no difference between the data base containing NA's and the data
 
 
 ```r
-hist(total.steps.day2$steps, breaks="FD", xlab="Steps", 
+hist(total.steps.day2$steps, breaks = "FD", xlab = "Steps", 
      main = "Histogram of the total number of steps", abline = 1000)
-abline(v=mean.steps.day2, col="red")
-abline(v=median.steps.day2, col="blue", lty="dashed")
+abline(v=mean.steps.day2, col = "red")
+abline(v=median.steps.day2, col = "blue", lty = "dashed")
 ```
 
 ![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png) 
 
-##### Are there differences in activity patterns between weekdays and weekends?
+##### 4) Are there differences in activity patterns between weekdays and weekends?
 
 Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
 
@@ -301,8 +302,8 @@ head(acti.base.no.na.fact.agg, 10)
 The graph looks like:
 
 ```r
-ggplot(acti.base.no.na.fact.agg, aes(x=interval, y=steps)) + geom_line() +
-                facet_wrap(~ type, ncol=1) + ylab("Mean steps")
+ggplot(acti.base.no.na.fact.agg, aes(x = interval, y = steps)) + geom_line() +
+                facet_wrap(~ type, ncol = 1) + ylab("Mean steps")
 ```
 
 ![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png) 
