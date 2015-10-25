@@ -1,5 +1,5 @@
 library(shiny)
-library(datasets)
+library(stringr)
 
 #Define server logic required to plot various variables against mpg
 
@@ -7,23 +7,32 @@ shinyServer(function(input, output) {
       
       output$table <- renderDataTable({
             
-            data <- read.csv("C:/Users/Daniel/Desktop/todos/todos.csv",
+            dataset <- read.csv("./data/todos.csv",
                              header = TRUE)
             
             #CALCULATE and create new column based on scores. The new column
             #will identify the match as a home win, tie, or away wins.
             
-            data <- cbind(data, homegoals = as.numeric(str_sub(data$FT, 1, 1)),
-                          awaygoals = as.numeric(str_sub(data$FT, 3, 3)))
+            datasetInput <- reactive({
+                  switch(input$type, 
+                         "home" = home,
+                         "tie" = tie,
+                         "away" = away
+                  )
+            })
             
-            data$type <- ifelse(data$homegoals > data$awaygoals, "home",
-                                ifelse(data$homegoals == data$awaygoals,
+            dataset <- cbind(dataset, homegoals = as.numeric(str_sub(dataset$FT, 1, 1)),
+                          awaygoals = as.numeric(str_sub(dataset$FT, 3, 3)))
+            
+            dataset$type <- ifelse(dataset$homegoals > dataset$awaygoals, "home",
+                                ifelse(dataset$homegoals == dataset$awaygoals,
                                        "tie", "away"))
+            if(input$type != "ALL"){
+                  dataset <- dataset[dataset$type == input$type, ]}
             
-            data
-            data <- data[data$Team.1 == input$Team.1, ]
-            data <- data[data$Team.2 == input$Team.2, ]
-            data
+            dataset <- dataset[dataset$Team.1 == input$Team.1, ]
+            dataset <- dataset[dataset$Team.2 == input$Team.2, ]
+            dataset
             
             
       })
